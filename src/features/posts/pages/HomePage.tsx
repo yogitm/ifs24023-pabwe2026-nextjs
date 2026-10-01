@@ -130,10 +130,10 @@ function HomePage() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Total Postingan
             </p>
-            <h3 className="text-3xl font-black text-slate-800 mt-1">{totalCount}</h3>
+            <p className="text-3xl font-black text-slate-800 mt-1">{totalCount}</p>
           </div>
           <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
             <IconArticle size={26} stroke={2} />
@@ -142,12 +142,12 @@ function HomePage() {
 
         <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Postingan Saya
             </p>
-            <h3 className="text-3xl font-black text-emerald-600 mt-1">
+            <p className="text-3xl font-black text-emerald-600 mt-1">
               {myPostsCount}
-            </h3>
+            </p>
           </div>
           <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
             <IconUser size={26} stroke={2} />
@@ -156,10 +156,10 @@ function HomePage() {
 
         <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Total Suka
             </p>
-            <h3 className="text-3xl font-black text-rose-600 mt-1">{totalLikes}</h3>
+            <p className="text-3xl font-black text-rose-600 mt-1">{totalLikes}</p>
           </div>
           <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center">
             <IconHeart size={26} stroke={2} />
@@ -172,10 +172,12 @@ function HomePage() {
         <div className="relative flex-1 max-w-md">
           <IconSearch
             size={18}
-            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
           />
           <input
             type="text"
+            id="search-post-input"
+            aria-label="Cari postingan atau nama pembuat"
             data-testid="search-post-input"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -225,11 +227,11 @@ function HomePage() {
         </div>
       ) : filteredPosts.length === 0 ? (
         <div className="text-center py-16 bg-white rounded-2xl border border-slate-200/80 p-8">
-          <div className="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center mx-auto mb-4">
             <IconArticle size={32} />
           </div>
-          <h3 className="text-base font-bold text-slate-800">Belum ada postingan</h3>
-          <p className="text-sm text-slate-500 mt-1 max-w-sm mx-auto">
+          <h2 className="text-base font-bold text-slate-800">Belum ada postingan</h2>
+          <p className="text-sm text-slate-600 mt-1 max-w-sm mx-auto">
             {searchQuery
               ? "Tidak ada postingan yang cocok dengan kata kunci pencarian Anda."
               : "Jadilah yang pertama membuat postingan di linimasa ini!"}
@@ -275,10 +277,10 @@ function HomePage() {
                       </div>
                     )}
                     <div>
-                      <h4 className="text-sm font-bold text-slate-900 leading-tight">
+                      <h2 className="text-sm font-bold text-slate-900 leading-tight">
                         {authorName}
-                      </h4>
-                      <p className="text-xs text-slate-400 mt-0.5">
+                      </h2>
+                      <p className="text-xs text-slate-500 mt-0.5">
                         {post.created_at ? formatDate(post.created_at) : "Baru saja"}
                       </p>
                     </div>
@@ -295,6 +297,7 @@ function HomePage() {
                         }}
                         className="p-1.5 rounded-lg text-slate-500 hover:text-amber-600 hover:bg-amber-50 transition-colors cursor-pointer"
                         title="Ubah Postingan"
+                        aria-label="Ubah Postingan"
                       >
                         <IconPencil size={18} />
                       </button>
@@ -304,6 +307,7 @@ function HomePage() {
                         onClick={() => handleDeletePost(post.id)}
                         className="p-1.5 rounded-lg text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
                         title="Hapus Postingan"
+                        aria-label="Hapus Postingan"
                       >
                         <IconTrash size={18} />
                       </button>

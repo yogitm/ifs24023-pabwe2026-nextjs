@@ -169,6 +169,8 @@ function DetailPage() {
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto animate-in fade-in duration-300">
+      <h1 className="sr-only">Detail Postingan</h1>
+
       {/* Back button & Action buttons */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <Link
@@ -230,9 +232,9 @@ function DetailPage() {
               </div>
             )}
             <div>
-              <h3 className="text-base font-bold text-slate-900 leading-tight">
+              <h2 className="text-base font-bold text-slate-900 leading-tight">
                 {authorName}
-              </h3>
+              </h2>
               <p className="text-xs text-slate-500 mt-0.5">
                 {authorEmail} • {post.created_at ? formatDate(post.created_at) : "Baru saja"}
               </p>
@@ -290,16 +292,18 @@ function DetailPage() {
 
       {/* Comments Section */}
       <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs p-6 space-y-6">
-        <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+        <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
           <span>Diskusi & Komentar</span>
           <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
             {comments.length}
           </span>
-        </h4>
+        </h3>
 
         {/* New Comment Form */}
         <form onSubmit={handleAddComment} className="space-y-3">
           <textarea
+            id="comment-input"
+            aria-label="Tuliskan tanggapan atau komentar Anda"
             data-testid="comment-input"
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
@@ -332,7 +336,7 @@ function DetailPage() {
 
         {/* Comments List */}
         {comments.length === 0 ? (
-          <div className="text-center py-8 text-slate-400 text-sm border-t border-slate-100">
+          <div className="text-center py-8 text-slate-600 text-sm border-t border-slate-100">
             Belum ada komentar pada postingan ini. Jadilah yang pertama memberikan tanggapan!
           </div>
         ) : (
@@ -369,7 +373,7 @@ function DetailPage() {
                         <span className="text-xs font-bold text-slate-800">
                           {cAuthorName}
                         </span>
-                        <span className="text-[11px] text-slate-400 ml-2">
+                        <span className="text-[11px] text-slate-500 ml-2">
                           {formatDate(comment.created_at)}
                         </span>
                       </div>
@@ -379,8 +383,9 @@ function DetailPage() {
                           type="button"
                           data-testid={`delete-comment-btn-${comment.id}`}
                           onClick={() => handleDeleteComment(comment.id)}
-                          className="text-slate-400 hover:text-red-600 p-1 rounded-md transition-colors cursor-pointer"
+                          className="text-slate-500 hover:text-red-600 p-1 rounded-md transition-colors cursor-pointer"
                           title="Hapus Komentar"
+                          aria-label="Hapus Komentar"
                         >
                           <IconTrash size={14} />
                         </button>

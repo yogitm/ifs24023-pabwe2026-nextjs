@@ -48,7 +48,7 @@ function RegisterPage() {
   return (
     <form onSubmit={onSubmitHandler} className="space-y-4">
       <div>
-        <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
+        <label htmlFor="register-name-input" className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
           Nama Lengkap
         </label>
         <div className="relative">
@@ -58,6 +58,7 @@ function RegisterPage() {
           />
           <input
             type="text"
+            id="register-name-input"
             data-testid="register-name-input"
             value={name}
             onChange={onChangeName}
@@ -69,7 +70,7 @@ function RegisterPage() {
       </div>
 
       <div>
-        <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
+        <label htmlFor="register-email-input" className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
           Alamat Email
         </label>
         <div className="relative">
@@ -79,6 +80,7 @@ function RegisterPage() {
           />
           <input
             type="email"
+            id="register-email-input"
             data-testid="register-email-input"
             value={email}
             onChange={onChangeEmail}
@@ -90,7 +92,7 @@ function RegisterPage() {
       </div>
 
       <div>
-        <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
+        <label htmlFor="register-password-input" className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
           Kata Sandi
         </label>
         <div className="relative">
@@ -100,6 +102,7 @@ function RegisterPage() {
           />
           <input
             type="password"
+            id="register-password-input"
             data-testid="register-password-input"
             value={password}
             onChange={onChangePassword}

@@ -60,6 +60,9 @@ function AddModal({ show, onClose }: AddModalProps) {
 
   return (
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="add-modal-title"
       data-testid="add-post-modal"
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-200"
     >
@@ -72,12 +75,13 @@ function AddModal({ show, onClose }: AddModalProps) {
             <div className="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center">
               <IconPlus size={18} stroke={2.5} />
             </div>
-            <h3 className="text-base font-bold text-slate-800">Tambah Postingan Baru</h3>
+            <h3 id="add-modal-title" className="text-base font-bold text-slate-800">Tambah Postingan Baru</h3>
           </div>
           <button
             type="button"
             data-testid="close-add-modal-btn"
             onClick={onClose}
+            aria-label="Tutup Dialog"
             className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
           >
             <IconX size={18} />
@@ -86,10 +90,11 @@ function AddModal({ show, onClose }: AddModalProps) {
 
         <form onSubmit={handleSave} className="p-6 space-y-4">
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+            <label htmlFor="add-post-description-input" className="block text-sm font-semibold text-slate-700 mb-1.5">
               Deskripsi Postingan <span className="text-red-500">*</span>
             </label>
             <textarea
+              id="add-post-description-input"
               data-testid="add-post-description-input"
               value={description}
               onChange={changeDescription}

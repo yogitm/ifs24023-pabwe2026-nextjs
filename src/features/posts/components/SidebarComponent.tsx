@@ -65,10 +65,10 @@ function SidebarComponent({ isSidebarOpen, onCloseMobile }: SidebarComponentProp
         <div className="flex flex-col h-full justify-between">
           <div className="space-y-6">
             <div>
-              <p className="px-3 text-xs font-bold uppercase tracking-wider text-slate-400">
+              <p className="px-3 text-xs font-bold uppercase tracking-wider text-slate-500">
                 Menu Utama
               </p>
-              <nav className="mt-3 space-y-1">
+              <nav aria-label="Menu Utama" className="mt-3 space-y-1">
                 {navItems.map((item) => {
                   const Icon = item.icon;
                   const isActive = item.isActive;
@@ -90,7 +90,7 @@ function SidebarComponent({ isSidebarOpen, onCloseMobile }: SidebarComponentProp
                           className={
                             isActive
                               ? "text-white"
-                              : "text-slate-400 group-hover:text-slate-600"
+                              : "text-slate-500 group-hover:text-slate-600"
                           }
                         />
                         <span>{item.label}</span>

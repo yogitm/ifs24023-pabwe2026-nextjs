@@ -74,6 +74,9 @@ function ChangeModal({ show, onClose, postId }: ChangeModalProps) {
 
   return (
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="edit-modal-title"
       data-testid="edit-post-modal"
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-200"
     >
@@ -86,12 +89,13 @@ function ChangeModal({ show, onClose, postId }: ChangeModalProps) {
             <div className="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center">
               <IconEdit size={18} stroke={2.5} />
             </div>
-            <h3 className="text-base font-bold text-slate-800">Ubah Postingan</h3>
+            <h3 id="edit-modal-title" className="text-base font-bold text-slate-800">Ubah Postingan</h3>
           </div>
           <button
             type="button"
             data-testid="close-edit-modal-btn"
             onClick={onClose}
+            aria-label="Tutup Dialog"
             className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
           >
             <IconX size={18} />
@@ -100,10 +104,11 @@ function ChangeModal({ show, onClose, postId }: ChangeModalProps) {
 
         <form onSubmit={handleSave} className="p-6 space-y-4">
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+            <label htmlFor="edit-post-description-input" className="block text-sm font-semibold text-slate-700 mb-1.5">
               Deskripsi Postingan <span className="text-red-500">*</span>
             </label>
             <textarea
+              id="edit-post-description-input"
               data-testid="edit-post-description-input"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
