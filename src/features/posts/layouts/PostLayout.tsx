@@ -63,6 +63,14 @@ function PostLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
+      {/* Skip to Main Content Link for Keyboard and Screen Readers */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-xl focus:shadow-lg focus:outline-none"
+      >
+        Lewati ke konten utama
+      </a>
+
       <NavbarComponent
         profile={profile}
         handleLogout={handleLogout}
@@ -75,7 +83,7 @@ function PostLayout({ children }: { children: React.ReactNode }) {
         onCloseMobile={() => setIsSidebarOpen(false)}
       />
 
-      <main className="pt-16 md:pl-64 transition-all">
+      <main id="main-content" tabIndex={-1} className="pt-16 md:pl-64 transition-all focus:outline-none">
         <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
           {children}
         </div>

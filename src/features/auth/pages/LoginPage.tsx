@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { useState, useEffect } from "react";
 
@@ -57,6 +59,7 @@ function LoginPage() {
 
   return (
     <form onSubmit={onSubmitHandler} className="space-y-4">
+      <h2 className="sr-only">Form Masuk Akun</h2>
       <div>
         <label htmlFor="login-email-input" className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
           Alamat Email
@@ -64,6 +67,7 @@ function LoginPage() {
         <div className="relative">
           <IconMail
             size={18}
+            aria-hidden="true"
             className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
           />
           <input
@@ -72,6 +76,7 @@ function LoginPage() {
             data-testid="login-email-input"
             value={email}
             onChange={onEmailChange}
+            autoComplete="email"
             placeholder="nama@email.com"
             className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-all"
             required
@@ -86,6 +91,7 @@ function LoginPage() {
         <div className="relative">
           <IconLock
             size={18}
+            aria-hidden="true"
             className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
           />
           <input
@@ -94,6 +100,7 @@ function LoginPage() {
             data-testid="login-password-input"
             value={password}
             onChange={onPasswordChange}
+            autoComplete="current-password"
             placeholder="••••••••"
             className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-all"
             required
@@ -111,12 +118,12 @@ function LoginPage() {
         >
           {loading ? (
             <>
-              <IconLoader2 size={18} className="animate-spin" />
+              <IconLoader2 size={18} className="animate-spin" aria-hidden="true" />
               <span>Sedang Masuk...</span>
             </>
           ) : (
             <>
-              <IconLogin size={18} stroke={2.5} />
+              <IconLogin size={18} stroke={2.5} aria-hidden="true" />
               <span>Masuk Sekarang</span>
             </>
           )}

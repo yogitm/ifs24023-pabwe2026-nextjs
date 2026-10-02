@@ -178,7 +178,7 @@ function DetailPage() {
           data-testid="back-to-posts-link"
           className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors"
         >
-          <IconArrowLeft size={18} />
+          <IconArrowLeft size={18} aria-hidden="true" />
           Kembali ke Linimasa
         </Link>
 
@@ -190,7 +190,7 @@ function DetailPage() {
               onClick={() => setShowCoverModal(true)}
               className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-xl text-sky-700 bg-sky-50 hover:bg-sky-100 border border-sky-200/60 transition-colors cursor-pointer"
             >
-              <IconPhotoUp size={16} />
+              <IconPhotoUp size={16} aria-hidden="true" />
               Ubah Cover
             </button>
             <button
@@ -199,7 +199,7 @@ function DetailPage() {
               onClick={() => setShowEditModal(true)}
               className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-xl text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200/60 transition-colors cursor-pointer"
             >
-              <IconPencil size={16} />
+              <IconPencil size={16} aria-hidden="true" />
               Ubah Postingan
             </button>
             <button
@@ -208,7 +208,7 @@ function DetailPage() {
               onClick={handleDeletePost}
               className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-xl text-red-700 bg-red-50 hover:bg-red-100 border border-red-200/60 transition-colors cursor-pointer"
             >
-              <IconTrash size={16} />
+              <IconTrash size={16} aria-hidden="true" />
               Hapus
             </button>
           </div>
@@ -223,7 +223,7 @@ function DetailPage() {
             {authorPhoto ? (
               <img
                 src={authorPhoto}
-                alt={authorName}
+                alt={`Foto profil ${authorName}`}
                 className="w-12 h-12 rounded-full object-cover border border-slate-200"
               />
             ) : (
@@ -270,6 +270,7 @@ function DetailPage() {
             type="button"
             data-testid="like-detail-btn"
             onClick={handleToggleLike}
+            aria-label={isLiked ? "Batal menyukai postingan ini" : "Sukai postingan ini"}
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
               isLiked
                 ? "bg-rose-50 text-rose-600 hover:bg-rose-100"
@@ -278,13 +279,14 @@ function DetailPage() {
           >
             <IconHeart
               size={20}
+              aria-hidden="true"
               className={isLiked ? "fill-rose-600 text-rose-600" : ""}
             />
             <span>{isLiked ? "Disukai" : "Suka"} ({post.likes_count || 0})</span>
           </button>
 
           <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500">
-            <IconMessageCircle size={20} />
+            <IconMessageCircle size={20} aria-hidden="true" />
             <span>{comments.length} Komentar</span>
           </div>
         </div>
@@ -301,6 +303,9 @@ function DetailPage() {
 
         {/* New Comment Form */}
         <form onSubmit={handleAddComment} className="space-y-3">
+          <label htmlFor="comment-input" className="sr-only">
+            Tuliskan tanggapan atau komentar Anda
+          </label>
           <textarea
             id="comment-input"
             aria-label="Tuliskan tanggapan atau komentar Anda"
@@ -321,12 +326,12 @@ function DetailPage() {
             >
               {commentLoading ? (
                 <>
-                  <IconLoader2 size={16} className="animate-spin" />
+                  <IconLoader2 size={16} className="animate-spin" aria-hidden="true" />
                   <span>Mengirim...</span>
                 </>
               ) : (
                 <>
-                  <IconSend size={16} />
+                  <IconSend size={16} aria-hidden="true" />
                   <span>Kirim Komentar</span>
                 </>
               )}
@@ -358,7 +363,7 @@ function DetailPage() {
                   {cAuthorPhoto ? (
                     <img
                       src={cAuthorPhoto}
-                      alt={cAuthorName}
+                      alt={`Foto profil ${cAuthorName}`}
                       className="w-8 h-8 rounded-full object-cover border border-slate-200 flex-shrink-0"
                     />
                   ) : (
@@ -385,9 +390,9 @@ function DetailPage() {
                           onClick={() => handleDeleteComment(comment.id)}
                           className="text-slate-500 hover:text-red-600 p-1 rounded-md transition-colors cursor-pointer"
                           title="Hapus Komentar"
-                          aria-label="Hapus Komentar"
+                          aria-label={`Hapus komentar dari ${cAuthorName}`}
                         >
-                          <IconTrash size={14} />
+                          <IconTrash size={14} aria-hidden="true" />
                         </button>
                       )}
                     </div>

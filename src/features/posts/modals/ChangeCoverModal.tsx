@@ -94,7 +94,7 @@ function ChangeCoverModal({ show, onClose, post }: ChangeCoverModalProps) {
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/70">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center">
-              <IconPhotoUp size={18} stroke={2.5} />
+              <IconPhotoUp size={18} stroke={2.5} aria-hidden="true" />
             </div>
             <h3 id="change-cover-modal-title" className="text-base font-bold text-slate-800">Ubah Cover Postingan</h3>
           </div>
@@ -105,15 +105,15 @@ function ChangeCoverModal({ show, onClose, post }: ChangeCoverModalProps) {
             aria-label="Tutup Dialog"
             className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
           >
-            <IconX size={18} />
+            <IconX size={18} aria-hidden="true" />
           </button>
         </div>
 
         <form onSubmit={handleSave} className="p-6 space-y-4">
           <div>
-            <label htmlFor="cover-file-input" className="block text-sm font-semibold text-slate-700 mb-2">
+            <p className="block text-sm font-semibold text-slate-700 mb-2">
               Pilih Gambar Cover
-            </label>
+            </p>
             <label htmlFor="cover-file-input" className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-slate-300 hover:border-indigo-500 rounded-2xl cursor-pointer bg-slate-50/50 hover:bg-indigo-50/20 transition-all overflow-hidden relative">
               {previewUrl ? (
                 <img
@@ -124,7 +124,7 @@ function ChangeCoverModal({ show, onClose, post }: ChangeCoverModalProps) {
               ) : (
                 <div className="flex flex-col items-center justify-center pt-5 pb-6 text-center px-4">
                   <div className="w-10 h-10 mb-2 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                    <IconUpload size={20} />
+                    <IconUpload size={20} aria-hidden="true" />
                   </div>
                   <p className="text-sm font-semibold text-slate-700">
                     Klik untuk memilih foto
@@ -162,12 +162,12 @@ function ChangeCoverModal({ show, onClose, post }: ChangeCoverModalProps) {
             >
               {loading ? (
                 <>
-                  <IconLoader2 size={18} className="animate-spin" />
+                  <IconLoader2 size={18} className="animate-spin" aria-hidden="true" />
                   <span>Mengunggah...</span>
                 </>
               ) : (
                 <>
-                  <IconUpload size={18} stroke={2.5} />
+                  <IconUpload size={18} stroke={2.5} aria-hidden="true" />
                   <span>Unggah Cover</span>
                 </>
               )}

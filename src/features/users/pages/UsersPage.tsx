@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { useEffect, useState } from "react";
 
@@ -45,7 +47,7 @@ function UsersPage() {
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
             Semua Pengguna
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-slate-600 mt-1">
             Daftar seluruh akun pengguna yang terdaftar di dalam sistem.
           </p>
         </div>
@@ -55,9 +57,13 @@ function UsersPage() {
         {/* Header Search */}
         <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between gap-4">
           <div className="relative flex-1 max-w-md">
+            <label htmlFor="search-user-input" className="sr-only">
+              Cari pengguna berdasarkan nama atau email
+            </label>
             <IconSearch
               size={18}
-              className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
+              aria-hidden="true"
+              className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
             />
             <input
               type="text"
@@ -79,12 +85,12 @@ function UsersPage() {
         <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {loadingUsers && filteredUsers.length === 0 ? (
             <div className="col-span-full py-16 text-center text-slate-500">
-              <IconLoader2 size={36} className="mx-auto text-indigo-600 animate-spin mb-2" />
+              <IconLoader2 size={36} aria-hidden="true" className="mx-auto text-indigo-600 animate-spin mb-2" />
               <p className="font-medium text-slate-600">Memuat daftar pengguna...</p>
             </div>
           ) : filteredUsers.length === 0 ? (
             <div className="col-span-full py-12 text-center text-slate-500">
-              <IconUsers size={40} className="mx-auto text-slate-400 mb-2" />
+              <IconUsers size={40} aria-hidden="true" className="mx-auto text-slate-400 mb-2" />
               <p className="font-medium">Tidak ada data pengguna ditemukan.</p>
             </div>
           ) : (
@@ -98,7 +104,7 @@ function UsersPage() {
                   {u.photo ? (
                     <img
                       src={u.photo}
-                      alt={u.name}
+                      alt={`Foto profil ${u.name}`}
                       className="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0"
                     />
                   ) : (
@@ -110,7 +116,7 @@ function UsersPage() {
                   <div className="min-w-0 flex-1">
                     <h2 className="font-bold text-slate-900 truncate">{u.name}</h2>
                     <p className="text-xs text-slate-500 flex items-center gap-1 mt-0.5 truncate">
-                      <IconMail size={14} className="shrink-0 text-slate-400" />
+                      <IconMail size={14} aria-hidden="true" className="shrink-0 text-slate-400" />
                       <span className="truncate">{u.email}</span>
                     </p>
                   </div>
@@ -119,7 +125,7 @@ function UsersPage() {
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
                   <span className="font-mono font-semibold">ID: #{u.id}</span>
                   <span className="flex items-center gap-1">
-                    <IconCalendar size={13} />
+                    <IconCalendar size={13} aria-hidden="true" />
                     {formatDate(u.created_at)}
                   </span>
                 </div>

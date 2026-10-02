@@ -121,7 +121,7 @@ function HomePage() {
           onClick={() => setShowAddModal(true)}
           className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 shadow-md shadow-indigo-600/25 transition-all self-start sm:self-auto cursor-pointer"
         >
-          <IconPlus size={18} stroke={2.5} />
+          <IconPlus size={18} stroke={2.5} aria-hidden="true" />
           <span>Tambah Postingan</span>
         </button>
       </div>
@@ -130,19 +130,19 @@ function HomePage() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-600">
               Total Postingan
             </p>
             <p className="text-3xl font-black text-slate-800 mt-1">{totalCount}</p>
           </div>
           <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-            <IconArticle size={26} stroke={2} />
+            <IconArticle size={26} stroke={2} aria-hidden="true" />
           </div>
         </div>
 
         <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-600">
               Postingan Saya
             </p>
             <p className="text-3xl font-black text-emerald-600 mt-1">
@@ -150,19 +150,19 @@ function HomePage() {
             </p>
           </div>
           <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-            <IconUser size={26} stroke={2} />
+            <IconUser size={26} stroke={2} aria-hidden="true" />
           </div>
         </div>
 
         <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-600">
               Total Suka
             </p>
             <p className="text-3xl font-black text-rose-600 mt-1">{totalLikes}</p>
           </div>
           <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center">
-            <IconHeart size={26} stroke={2} />
+            <IconHeart size={26} stroke={2} aria-hidden="true" />
           </div>
         </div>
       </div>
@@ -170,8 +170,12 @@ function HomePage() {
       {/* Controls & Filter Bar */}
       <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="relative flex-1 max-w-md">
+          <label htmlFor="search-post-input" className="sr-only">
+            Cari postingan atau nama pembuat
+          </label>
           <IconSearch
             size={18}
+            aria-hidden="true"
             className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
           />
           <input
@@ -186,10 +190,10 @@ function HomePage() {
           />
         </div>
 
-        <div className="flex items-center gap-2.5">
-          <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
-            <IconFilter size={16} /> Filter:
-          </span>
+        <fieldset className="flex items-center gap-2.5">
+          <legend className="text-xs font-semibold text-slate-600 uppercase tracking-wide flex items-center gap-1.5">
+            <IconFilter size={16} aria-hidden="true" /> Filter:
+          </legend>
           <div className="inline-flex rounded-xl bg-slate-100 p-1 text-xs font-semibold text-slate-600">
             <button
               type="button"
@@ -216,19 +220,19 @@ function HomePage() {
               Postingan Saya
             </button>
           </div>
-        </div>
+        </fieldset>
       </div>
 
       {/* Posts Feed */}
       {loadingPosts && postList.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 bg-white rounded-2xl border border-slate-200/80">
-          <IconLoader2 size={32} className="animate-spin text-indigo-600 mb-2" />
+          <IconLoader2 size={32} aria-hidden="true" className="animate-spin text-indigo-600 mb-2" />
           <p className="text-sm font-medium text-slate-500">Memuat postingan...</p>
         </div>
       ) : filteredPosts.length === 0 ? (
         <div className="text-center py-16 bg-white rounded-2xl border border-slate-200/80 p-8">
           <div className="w-16 h-16 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center mx-auto mb-4">
-            <IconArticle size={32} />
+            <IconArticle size={32} aria-hidden="true" />
           </div>
           <h2 className="text-base font-bold text-slate-800">Belum ada postingan</h2>
           <p className="text-sm text-slate-600 mt-1 max-w-sm mx-auto">
@@ -242,7 +246,7 @@ function HomePage() {
             onClick={() => setShowAddModal(true)}
             className="mt-4 inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition-colors cursor-pointer"
           >
-            <IconPlus size={16} /> Buat Postingan Sekarang
+            <IconPlus size={16} aria-hidden="true" /> Buat Postingan Sekarang
           </button>
         </div>
       ) : (
@@ -268,7 +272,7 @@ function HomePage() {
                     {authorPhoto ? (
                       <img
                         src={authorPhoto}
-                        alt={authorName}
+                        alt={`Foto profil ${authorName}`}
                         className="w-10 h-10 rounded-full object-cover border border-slate-200"
                       />
                     ) : (
@@ -297,9 +301,9 @@ function HomePage() {
                         }}
                         className="p-1.5 rounded-lg text-slate-500 hover:text-amber-600 hover:bg-amber-50 transition-colors cursor-pointer"
                         title="Ubah Postingan"
-                        aria-label="Ubah Postingan"
+                        aria-label={`Ubah postingan oleh ${authorName}`}
                       >
-                        <IconPencil size={18} />
+                        <IconPencil size={18} aria-hidden="true" />
                       </button>
                       <button
                         type="button"
@@ -307,9 +311,9 @@ function HomePage() {
                         onClick={() => handleDeletePost(post.id)}
                         className="p-1.5 rounded-lg text-slate-500 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
                         title="Hapus Postingan"
-                        aria-label="Hapus Postingan"
+                        aria-label={`Hapus postingan oleh ${authorName}`}
                       >
-                        <IconTrash size={18} />
+                        <IconTrash size={18} aria-hidden="true" />
                       </button>
                     </div>
                   )}
@@ -320,7 +324,7 @@ function HomePage() {
                   <div className="w-full bg-slate-100 max-h-96 overflow-hidden">
                     <img
                       src={post.cover}
-                      alt="Cover Postingan"
+                      alt={`Cover postingan oleh ${authorName}`}
                       className="w-full h-auto object-cover max-h-96"
                     />
                   </div>
@@ -340,6 +344,7 @@ function HomePage() {
                       type="button"
                       data-testid={`like-post-btn-${post.id}`}
                       onClick={() => handleToggleLike(post.id, post.is_liked)}
+                      aria-label={isLiked ? `Batal menyukai postingan oleh ${authorName}` : `Sukai postingan oleh ${authorName}`}
                       className={`inline-flex items-center gap-1.5 font-semibold transition-colors cursor-pointer ${
                         isLiked
                           ? "text-rose-600 hover:text-rose-700"
@@ -348,6 +353,7 @@ function HomePage() {
                     >
                       <IconHeart
                         size={18}
+                        aria-hidden="true"
                         className={isLiked ? "fill-rose-600 text-rose-600" : ""}
                       />
                       <span>{post.likes_count || 0} Suka</span>
@@ -357,9 +363,10 @@ function HomePage() {
                       type="button"
                       data-testid={`comment-post-btn-${post.id}`}
                       onClick={() => router.push(`/posts/${post.id}`)}
+                      aria-label={`Buka komentar postingan oleh ${authorName}`}
                       className="inline-flex items-center gap-1.5 font-semibold text-slate-500 hover:text-indigo-600 transition-colors cursor-pointer"
                     >
-                      <IconMessageCircle size={18} />
+                      <IconMessageCircle size={18} aria-hidden="true" />
                       <span>{post.comments_count || 0} Komentar</span>
                     </button>
                   </div>
@@ -368,10 +375,11 @@ function HomePage() {
                     type="button"
                     data-testid={`view-detail-btn-${post.id}`}
                     onClick={() => router.push(`/posts/${post.id}`)}
+                    aria-label={`Lihat detail postingan oleh ${authorName}`}
                     className="inline-flex items-center gap-1 font-semibold text-indigo-600 hover:text-indigo-700 hover:underline cursor-pointer"
                   >
                     <span>Lihat Detail</span>
-                    <IconArrowRight size={14} />
+                    <IconArrowRight size={14} aria-hidden="true" />
                   </button>
                 </div>
               </div>

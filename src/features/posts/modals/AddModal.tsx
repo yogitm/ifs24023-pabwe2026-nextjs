@@ -73,7 +73,7 @@ function AddModal({ show, onClose }: AddModalProps) {
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/70">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center">
-              <IconPlus size={18} stroke={2.5} />
+              <IconPlus size={18} stroke={2.5} aria-hidden="true" />
             </div>
             <h3 id="add-modal-title" className="text-base font-bold text-slate-800">Tambah Postingan Baru</h3>
           </div>
@@ -84,7 +84,7 @@ function AddModal({ show, onClose }: AddModalProps) {
             aria-label="Tutup Dialog"
             className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
           >
-            <IconX size={18} />
+            <IconX size={18} aria-hidden="true" />
           </button>
         </div>
 
@@ -123,12 +123,12 @@ function AddModal({ show, onClose }: AddModalProps) {
             >
               {loading ? (
                 <>
-                  <IconLoader2 size={18} className="animate-spin" />
+                  <IconLoader2 size={18} className="animate-spin" aria-hidden="true" />
                   <span>Memublikasikan...</span>
                 </>
               ) : (
                 <>
-                  <IconPlus size={18} stroke={2.5} />
+                  <IconPlus size={18} stroke={2.5} aria-hidden="true" />
                   <span>Publikasikan</span>
                 </>
               )}

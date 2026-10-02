@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { useState, useEffect } from "react";
 
@@ -155,7 +157,7 @@ function ProfilePage() {
           {profile.photo ? (
             <img
               src={profile.photo}
-              alt={profile.name}
+              alt={`Foto profil ${profile.name}`}
               className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md ring-2 ring-indigo-100"
             />
           ) : (
@@ -172,9 +174,9 @@ function ProfilePage() {
             aria-label="Ubah Foto Profil"
           >
             {loadingPhoto ? (
-              <IconLoader2 size={16} className="animate-spin" />
+              <IconLoader2 size={16} className="animate-spin" aria-hidden="true" />
             ) : (
-              <IconCamera size={16} />
+              <IconCamera size={16} aria-hidden="true" />
             )}
             <input
               type="file"
@@ -190,10 +192,10 @@ function ProfilePage() {
 
         <div className="text-center sm:text-left space-y-1">
           <h2 className="text-xl font-bold text-slate-800">{profile.name}</h2>
-          <p className="text-sm text-slate-500">{profile.email}</p>
+          <p className="text-sm text-slate-600">{profile.email}</p>
           <div className="pt-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200/60">
-              <IconCheck size={14} /> Terverifikasi
+              <IconCheck size={14} aria-hidden="true" /> Terverifikasi
             </span>
           </div>
         </div>
@@ -204,7 +206,7 @@ function ProfilePage() {
         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-5">
           <div className="flex items-center gap-2.5 pb-2 border-b border-slate-100">
             <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
-              <IconUser size={18} />
+              <IconUser size={18} aria-hidden="true" />
             </div>
             <h3 className="font-bold text-slate-800">Ubah Biodata</h3>
           </div>
@@ -220,6 +222,7 @@ function ProfilePage() {
                 data-testid="profile-name-input"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                autoComplete="name"
                 className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-all"
                 required
               />
@@ -235,6 +238,7 @@ function ProfilePage() {
                 data-testid="profile-email-input"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
                 className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-all"
                 required
               />
@@ -249,7 +253,7 @@ function ProfilePage() {
               >
                 {loadingProfile ? (
                   <>
-                    <IconLoader2 size={18} className="animate-spin" />
+                    <IconLoader2 size={18} className="animate-spin" aria-hidden="true" />
                     <span>Menyimpan Perubahan...</span>
                   </>
                 ) : (
@@ -264,7 +268,7 @@ function ProfilePage() {
         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-5">
           <div className="flex items-center gap-2.5 pb-2 border-b border-slate-100">
             <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
-              <IconShieldLock size={18} />
+              <IconShieldLock size={18} aria-hidden="true" />
             </div>
             <h3 className="font-bold text-slate-800">Keamanan & Password</h3>
           </div>
@@ -280,6 +284,7 @@ function ProfilePage() {
                 data-testid="current-password-input"
                 value={oldPassword}
                 onChange={(e) => setOldPassword(e.target.value)}
+                autoComplete="current-password"
                 placeholder="••••••"
                 className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-all"
                 required
@@ -296,6 +301,7 @@ function ProfilePage() {
                 data-testid="new-password-input"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
+                autoComplete="new-password"
                 placeholder="Minimal 6 karakter"
                 className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-all"
                 required
@@ -312,6 +318,7 @@ function ProfilePage() {
                 data-testid="confirm-password-input"
                 value={newPasswordConfirmation}
                 onChange={(e) => setNewPasswordConfirmation(e.target.value)}
+                autoComplete="new-password"
                 placeholder="Konfirmasi kata sandi"
                 className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition-all"
                 required
@@ -327,7 +334,7 @@ function ProfilePage() {
               >
                 {loadingPassword ? (
                   <>
-                    <IconLoader2 size={18} className="animate-spin" />
+                    <IconLoader2 size={18} className="animate-spin" aria-hidden="true" />
                     <span>Memperbarui Password...</span>
                   </>
                 ) : (
